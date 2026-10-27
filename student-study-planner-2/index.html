@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StudyFlow</title>
+<link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+<div class="app">
+<aside class="sidebar">
+<div class="logo"><div class="logo-icon">S</div><div><h1>StudyFlow</h1><p>Smart Study Planner</p></div></div>
+<nav class="nav">
+<button class="nav-btn active" data-view="dashboard"><span>H</span> Dashboard</button>
+<button class="nav-btn" data-view="all"><span>A</span> All Assignments</button>
+<button class="nav-btn" data-view="pending"><span>P</span> Pending</button>
+<button class="nav-btn" data-view="completed"><span>C</span> Completed</button>
+<button class="nav-btn" data-view="overdue"><span>O</span> Overdue</button>
+</nav>
+<div class="sidebar-footer"><div class="streak-card"><div class="streak-emoji">*</div><div><h4 id="streakCount">0 days</h4><p>Study Streak</p></div></div></div>
+</aside>
+<main class="main">
+<header class="topbar">
+<div><h2 id="pageTitle">Dashboard</h2><p id="pageSubtitle">Welcome back!</p></div>
+<button class="btn-primary" id="openAddModal"><span>+</span> New Assignment</button>
+</header>
+<section class="stats-grid">
+<div class="stat-card" data-filter="all"><div class="stat-icon blue">1</div><div><h3 id="statTotal">0</h3><p>Total Tasks</p></div></div>
+<div class="stat-card" data-filter="pending"><div class="stat-icon yellow">2</div><div><h3 id="statPending">0</h3><p>Pending</p></div></div>
+<div class="stat-card" data-filter="inprogress"><div class="stat-icon purple">3</div><div><h3 id="statProgress">0</h3><p>In Progress</p></div></div>
+<div class="stat-card" data-filter="completed"><div class="stat-icon green">4</div><div><h3 id="statCompleted">0</h3><p>Completed</p></div></div>
+<div class="stat-card" data-filter="overdue"><div class="stat-icon red">5</div><div><h3 id="statOverdue">0</h3><p>Overdue</p></div></div>
+</section>
+<section class="progress-section">
+<div class="progress-header"><h4>Overall Progress</h4><span id="progressPercent">0%</span></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</section>
+<section class="controls">
+<div class="search-box"><span>Q</span><input type="text" id="searchInput" placeholder="Search..." /></div>
+<div class="filter-chips">
+<button class="chip active" data-filter="all">All</button>
+<button class="chip" data-filter="pending">Pending</button>
+<button class="chip" data-filter="inprogress">In Progress</button>
+<button class="chip" data-filter="completed">Completed</button>
+<button class="chip" data-filter="overdue">Overdue</button>
+</div>
+</section>
+<section class="assignments" id="assignmentsList"></section>
+<div class="empty-state" id="emptyState" style="display:none;"><div class="empty-emoji">*</div><h3>No assignments yet</h3><p>Click "New Assignment" to get started!</p></div>
+</main>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+<div class="modal">
+<div class="modal-header"><h3 id="modalTitle">New Assignment</h3><button class="close-btn" id="closeModal">X</button></div>
+<form id="assignmentForm">
+<input type="hidden" id="editingId" />
+<label>Subject<input type="text" id="subjectInput" placeholder="e.g. Web Technology" required /></label>
+<label>Assignment Title<input type="text" id="titleInput" placeholder="e.g. HTML Forms" required /></label>
+<label>Deadline<input type="date" id="deadlineInput" required /></label>
+<label>Status<select id="statusInput"><option value="Pending">Pending</option><option value="In Progress">In Progress</option><option value="Completed">Completed</option></select></label>
+<label>Priority<select id="priorityInput"><option value="Low">Low</option><option value="Medium" selected>Medium</option><option value="High">High</option></select></label>
+<div class="modal-actions"><button type="button" class="btn-secondary" id="cancelBtn">Cancel</button><button type="submit" class="btn-primary" id="saveBtn">Save</button></div>
+</form>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
